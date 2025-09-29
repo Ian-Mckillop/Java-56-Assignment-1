@@ -9,8 +9,7 @@ public class Expense {
     private Date date;
     private String category;
 
-    // constructors
-
+    // constructor
     public Expense(String description, int amount, Date date, String category) {
         this.description = description;
         this.amount = amount;
@@ -19,7 +18,6 @@ public class Expense {
     }
 
     // setters
-
     public void setDescription(String description) {
         this.description = description;
     }
@@ -37,7 +35,6 @@ public class Expense {
     }
 
     // getters
-
     public String getDescription() {
         return description;
     }

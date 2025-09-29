@@ -10,14 +10,16 @@ public class Main {
         ExpenseManager expenseTracker = new ExpenseManager();
         System.out.println("Hello and welcome to this Expense Tracker!");
         Scanner scanner = new Scanner(System.in);
+        // repeats the following sequence until the user chooses to exit
         do{
         System.out.println("Would you like to:");
         System.out.println("1. Add a new expense?");
         System.out.println("2. Remove an expense?");
         System.out.println("3. Look at all your current expenses?");
         System.out.println("4. Look at all the expenses in a specific category?");
-        System.out.println("5. Look at all the expenses in a specific period of time?");
-        System.out.println("6. Exit the Expense Tracker?");
+        System.out.println("5. Look at all the expenses over a specific period of time?");
+        System.out.println("6. Look at the total expenses over a specific period of time?");
+        System.out.println("7. Exit the Expense Tracker?");
         int option = scannerExceptionHandler();
 
         switch(option) {
@@ -29,6 +31,7 @@ public class Main {
                 Date date = getDate();
                 System.out.println("Please add a category:");
                 String category = scanner.next();
+                // adds an expense object based on the user's responses
                 expenseTracker.expenseAdd(description, amount, date, category);
                 System.out.println("Expense Added! \n");
                 break;
@@ -48,16 +51,25 @@ public class Main {
                 break;
             case 5:
                 System.out.println("What period of time would you like the expenses for?");
-                Date startDate  = getDate();
+                Date startDate = getDate();
                 Date endDate = getDate();
                 expenseTracker.listExpenses(startDate, endDate);
                 break;
             case 6:
+                System.out.println("What period of time would you like the expenses for?");
+                Date startOfExpenses = getDate();
+                Date endOfExpenses = getDate();
+                int totalExpenses = expenseTracker.totalExpenses(startOfExpenses, endOfExpenses);
+                System.out.println("The total expenses over this time period are: $" + totalExpenses);
+                break;
+            case 7:
                 closeProgram = true;
         }
         } while(!closeProgram);
     }
-
+    /**
+     * obtains and returns a Date object from the user
+     */
     public static Date getDate() {
         System.out.println("Please add a date, starting with just the year:");
         int year = scannerExceptionHandler();
@@ -67,7 +79,9 @@ public class Main {
         int day = scannerExceptionHandler();
         return new GregorianCalendar(year, month, day).getTime();
     }
-
+    /**
+     * handles exceptions related to using a scanner object's nextInt()
+     */
     public static int scannerExceptionHandler() {
         Scanner scanner = new Scanner(System.in);
         boolean properValue = false;
