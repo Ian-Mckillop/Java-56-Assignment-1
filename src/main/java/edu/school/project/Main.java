@@ -18,14 +18,14 @@ public class Main {
         System.out.println("4. Look at all the expenses in a specific category?");
         System.out.println("5. Look at all the expenses in a specific period of time?");
         System.out.println("6. Exit the Expense Tracker?");
-        int option = scanner.nextInt();
+        int option = scannerExceptionHandler();
 
         switch(option) {
             case 1:
                 System.out.println("To enter a new expense, please add a description:");
                 String description = scanner.next();
                 System.out.println("Please add an amount:");
-                int amount = scanner.nextInt();
+                int amount = scannerExceptionHandler();
                 Date date = getDate();
                 System.out.println("Please add a category:");
                 String category = scanner.next();
@@ -34,7 +34,7 @@ public class Main {
                 break;
             case 2:
                 System.out.println("Please enter the number corresponding to the expense you would like to remove:");
-                int expenseToRemove = scanner.nextInt();
+                int expenseToRemove = scannerExceptionHandler();
                 expenseTracker.removeExpense(expenseToRemove);
                 break;
             case 3:
@@ -59,13 +59,29 @@ public class Main {
     }
 
     public static Date getDate() {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Please add a date, starting with just the year:");
-        int year = scanner.nextInt();
+        int year = scannerExceptionHandler();
         System.out.println("Now the month:");
-        int month = scanner.nextInt() - 1;
+        int month = scannerExceptionHandler() - 1;
         System.out.println("And now the day of the month:");
-        int day = scanner.nextInt();
+        int day = scannerExceptionHandler();
         return new GregorianCalendar(year, month, day).getTime();
+    }
+
+    public static int scannerExceptionHandler() {
+        Scanner scanner = new Scanner(System.in);
+        boolean properValue = false;
+        int userInput = 0;
+        do {
+            try {
+                userInput = scanner.nextInt();
+                properValue = true;
+            } catch (Exception e) {
+                System.out.println("Please input an integer.");
+                scanner.nextLine();
+            }
+        }while(!properValue);
+
+        return userInput;
     }
 }

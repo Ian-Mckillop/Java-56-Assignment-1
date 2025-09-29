@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class ExpenseManager {
     // state
-    private ArrayList<Expense> expenseList = new ArrayList<>();
+    private final ArrayList<Expense> expenseList = new ArrayList<>();
 
     // behaviour
     public void expenseAdd(String description, int amount, Date date, String category) {
