@@ -1,15 +1,17 @@
 package edu.school.project;
 
+import java.util.Date;
+
 public class Expense {
     // state
-    String description;
-    int amount;
-    int date;
-    String category;
+    private String description;
+    private int amount;
+    private Date date;
+    private String category;
 
     // constructors
 
-    public Expense(String description, int amount, int date, String category) {
+    public Expense(String description, int amount, Date date, String category) {
         this.description = description;
         this.amount = amount;
         this.date = date;
@@ -18,37 +20,37 @@ public class Expense {
 
     // setters
 
-    void setDescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
-    void setAmount(int amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
 
-    void setDate(int date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
-    void setCategory(String category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 
     // getters
 
-    String getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    int getAmount() {
+    public int getAmount() {
         return amount;
     }
 
-    int getDate() {
+    public Date getDate() {
         return date;
     }
 
-    String getCategory() {
+    public String getCategory() {
         return category;
     }
 }
